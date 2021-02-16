@@ -1,9 +1,16 @@
+
+
 FROM registry.fedoraproject.org/fedora:33
 WORKDIR /root/containerbuild
+RUN ls -la
+
+COPY ./ /root/containerbuild/
+RUN ls -la
 
 # We split into multiple steps here so that local dev workflows which involve
 # rebuilding the container can leverage cached layers better.
 
+RUN echo "renata"
 # Only need a few of our scripts for the first few steps
 COPY ./src/print-dependencies.sh ./src/deps*.txt ./src/vmdeps*.txt ./src/build-deps.txt /root/containerbuild/src/
 COPY ./build.sh /root/containerbuild/
